@@ -5,6 +5,7 @@ import techStore from "../store/techStore";
 import SimpleAnswerForm from "../components/single";
 import RadioButtonGroup from "../types/singleChoiseQuestion";
 import SingleChoiseQuestion from "../types/singleChoiseQuestion";
+import CountdownTimer from "../components/CountdownTimer";
 const MainPage = () => {
 
 
@@ -12,9 +13,10 @@ const MainPage = () => {
     return (
         <div>
             school test
+            <CountdownTimer initialTime={100}/>
             <div>прогрессбар</div>
 
-            <div>таймер</div>
+
             <div>{'Вопрос номер '+ questionsStore[techStore.currentQuestionId].id +': ' +questionsStore[techStore.currentQuestionId].title}</div>
 
             <button onClick={techStore.currentQuestionIdDecrement}>предыдущий вопрос</button>
