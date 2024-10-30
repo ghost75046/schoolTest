@@ -2,8 +2,6 @@ import React from 'react';
 import questionsStore from "../store/questionsStore";
 import {observer} from "mobx-react-lite";
 import techStore from "../store/techStore";
-import SimpleAnswerForm from "../components/single";
-import RadioButtonGroup from "../types/singleChoiseQuestion";
 import SingleChoiseQuestion from "../types/singleChoiseQuestion";
 import CountdownTimer from "../components/CountdownTimer";
 import ProgressBar from "../components/ProgressBar";
