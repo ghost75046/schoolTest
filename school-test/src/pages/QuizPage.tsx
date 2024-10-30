@@ -3,6 +3,8 @@ import questionsStore from "../store/questionsStore";
 import {observer} from "mobx-react-lite";
 import techStore from "../store/techStore";
 import SimpleAnswerForm from "../components/single";
+import RadioButtonGroup from "../types/singleChoiseQuestion";
+import SingleChoiseQuestion from "../types/singleChoiseQuestion";
 const MainPage = () => {
 
 
@@ -18,6 +20,9 @@ const MainPage = () => {
             <button onClick={techStore.currentQuestionIdDecrement}>предыдущий вопрос</button>
             <button onClick={techStore.currentQuestionIdIncrement}>следующий вопрос</button>
 
+
+            {(questionsStore[techStore.currentQuestionId].type == 'singleChoice') && <SingleChoiseQuestion options={questionsStore[techStore.currentQuestionId].answers!}/>}
+            <div>vibor{questionsStore[techStore.currentQuestionId].answer}</div>
             {/*<SimpleAnswerForm />*/}
             {/*<input*/}
             {/*    type="text"*/}
