@@ -6,6 +6,7 @@ import SimpleAnswerForm from "../components/single";
 import RadioButtonGroup from "../types/singleChoiseQuestion";
 import SingleChoiseQuestion from "../types/singleChoiseQuestion";
 import CountdownTimer from "../components/CountdownTimer";
+import ProgressBar from "../components/ProgressBar";
 const MainPage = () => {
 
 
@@ -15,6 +16,7 @@ const MainPage = () => {
             school test
             <CountdownTimer initialTime={100}/>
             <div>прогрессбар</div>
+            <ProgressBar questions={questionsStore} currentQuestionId={techStore.currentQuestionId}/>
 
 
             <div>{'Вопрос номер '+ questionsStore[techStore.currentQuestionId].id +': ' +questionsStore[techStore.currentQuestionId].title}</div>
