@@ -23,7 +23,7 @@ const SingleChoiseQuestion: React.FC<SingleChoiseQuestionProps> = ({ options }) 
     return (
         <div className='singleChoiseQuestion'>
             {options.map((option) => (
-                <label key={option.value}>
+                <label className='custom-radio' key={option.value}>
                     <input
                         type="radio"
                         value={option.value}
@@ -31,6 +31,7 @@ const SingleChoiseQuestion: React.FC<SingleChoiseQuestionProps> = ({ options }) 
                         onChange={handleOptionChange}
                     />
                     {option.label}
+
                 </label>
             ))}
         </div>
