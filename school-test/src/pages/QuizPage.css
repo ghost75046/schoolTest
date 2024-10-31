@@ -1,3 +1,7 @@
+.quizPage {
+  margin-left: 50px;
+}
+
 .testAndTimer {
   display: flex;
   align-items: center;

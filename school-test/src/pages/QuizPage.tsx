@@ -11,7 +11,7 @@ const MainPage = () => {
 
 
     return (
-        <div>
+        <div className='quizPage'>
             <div className='testAndTimer'><p>Тестирование</p>
                 <CountdownTimer initialTime={100}/>
             </div>
