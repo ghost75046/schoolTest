@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import questionsStore from "../store/questionsStore";
 import techStore from "../store/techStore";
-
+import './singleChoiseQuestion.css'
 type Option = {
     value: string;
     label: string;
@@ -19,8 +19,9 @@ const SingleChoiseQuestion: React.FC<SingleChoiseQuestionProps> = ({ options }) 
 
     };
     questionsStore[techStore.currentQuestionId].answer = selectedOption
+
     return (
-        <div>
+        <div className='singleChoiseQuestion'>
             {options.map((option) => (
                 <label key={option.value}>
                     <input

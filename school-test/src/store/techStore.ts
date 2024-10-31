@@ -11,7 +11,9 @@ const techStore = observable({
     currentQuestionId:0,
     currentQuestionIdIncrement() {
         if(techStore.currentQuestionId<questionsStore.length-1) {
+            questionsStore[techStore.currentQuestionId].isAnswered = true
             techStore.currentQuestionId++
+
         }
 
     },

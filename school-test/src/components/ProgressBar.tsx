@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './ProgressBar.css'
 type Question = {
     id: number;
     isAnswered: boolean;
@@ -18,17 +18,17 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ questions, currentQuestionId 
                 let backgroundColor = 'gray'; // Цвет для не начатых вопросов
 
                 if (index === currentQuestionId) {
-                    backgroundColor = 'red'; // Цвет текущего вопроса
+                    backgroundColor = 'firebrick'; // Цвет текущего вопроса
                 } else if (question.isAnswered) {
                     backgroundColor = 'black'; // Цвет для завершенных вопросов
                 }
 
                 return (
-                    <div
+                    <div className='progressBarItem'
                         key={question.id}
                         style={{
-                            width: '20px',
-                            height: '20px',
+                            width: '60px',
+                            height: '10px',
                             backgroundColor,
                         }}
                     />

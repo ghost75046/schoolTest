@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './CountdownTimer.css'
 
 type CountdownTimerProps = {
     initialTime: number; // начальное время в секундах
@@ -29,10 +30,10 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ initialTime, onComplete
     const formatTime = (time: number) => (time < 10 ? `0${time}` : time);
 
     return (
-        <div>
+        <div className='timer'>
             {timeLeft > 0 ? (
                 <h1>
-                    Осталось времени: {formatTime(hours)}:{formatTime(minutes)}:{formatTime(seconds)}
+                    {formatTime(minutes)}:{formatTime(seconds)}
                 </h1>
             ) : (
                 <h1>Время вышло!</h1>
@@ -40,5 +41,5 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ initialTime, onComplete
         </div>
     );
 };
-
+// полный формат времени: Осталось времени: {formatTime(hours)}:{formatTime(minutes)}:{formatTime(seconds)}
 export default CountdownTimer;

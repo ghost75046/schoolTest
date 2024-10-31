@@ -1,0 +1,10 @@
+.timer {
+    border: solid black 3px ;
+    border-radius: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -28,7 +28,7 @@ const questionsStore = observable([
         type:'shortText',
         answer:'',
         trueAnswer:'Businka',
-        isAnswered:true
+        isAnswered:false
     },
     {id: 3,
 

@@ -1,0 +1,5 @@
+.singleChoiseQuestion {
+    display: flex;
+    flex-direction: column;
+
+}
