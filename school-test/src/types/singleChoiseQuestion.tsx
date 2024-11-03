@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import questionsStore from "../store/questionsStore";
 import techStore from "../store/techStore";
-import './singleChoiseQuestion.css'
+import './singleChoiseQuestion.css';
+
 type Option = {
     value: string;
     label: string;
@@ -15,10 +16,12 @@ const SingleChoiseQuestion: React.FC<SingleChoiseQuestionProps> = ({ options }) 
     const [selectedOption, setSelectedOption] = useState<string>('');
 
     const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedOption(event.target.value);
+        const value = event.target.value;
+        setSelectedOption(value);
 
+        // Обновляем хранилище, записывая выбранный ответ в массив
+        questionsStore[techStore.currentQuestionId].answer = [value]; // Записываем выбранный ответ как нулевой элемент массива
     };
-    questionsStore[techStore.currentQuestionId].answer = selectedOption
 
     return (
         <div className='singleChoiseQuestion'>
@@ -31,7 +34,6 @@ const SingleChoiseQuestion: React.FC<SingleChoiseQuestionProps> = ({ options }) 
                         onChange={handleOptionChange}
                     />
                     {option.label}
-
                 </label>
             ))}
         </div>

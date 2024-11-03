@@ -6,6 +6,9 @@ import SingleChoiseQuestion from "../types/singleChoiseQuestion";
 import CountdownTimer from "../components/CountdownTimer";
 import ProgressBar from "../components/ProgressBar";
 import './QuizPage.css'
+import MultipleChoiceQuestion from "../types/multipleChoiseQuestion";
+import ShortTextQuestion from "../types/ShortTextQuestion";
+import LongTextQuestion from "../types/LongTextQuestion";
 const MainPage = () => {
 
 
@@ -24,6 +27,14 @@ const MainPage = () => {
 
             {(questionsStore[techStore.currentQuestionId].type == 'singleChoice') &&
                 <SingleChoiseQuestion options={questionsStore[techStore.currentQuestionId].answers!}/>}
+            {(questionsStore[techStore.currentQuestionId].type == 'multipleChoice') &&
+                <MultipleChoiceQuestion options={questionsStore[techStore.currentQuestionId].answers!}/>}
+            {(questionsStore[techStore.currentQuestionId].type == 'shortText') &&
+                <ShortTextQuestion placeholder={'vvedite'}/>}
+            {(questionsStore[techStore.currentQuestionId].type == 'longText') &&
+                <LongTextQuestion placeholder={'vvedite'}/>}
+
+
 
             {/*<SimpleAnswerForm />*/}
             {/*<input*/}
