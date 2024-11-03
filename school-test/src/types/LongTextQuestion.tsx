@@ -8,16 +8,30 @@ type LongTextQuestionProps = {
 };
 
 const LongTextQuestion: React.FC<LongTextQuestionProps> = ({ placeholder }) => {
+    const questionId = techStore.currentQuestionId; // Получаем текущий идентификатор вопроса
+    const localStorageKey = `question_${questionId}`; // Ключ для хранения в localStorage
+
     const [inputValue, setInputValue] = useState<string>('');
 
+    useEffect(() => {
+        // Загружаем сохранённое значение из localStorage при монтировании компонента
+        const savedValue = localStorage.getItem(localStorageKey);
+        if (savedValue) {
+            setInputValue(savedValue);
+        }
+    }, [localStorageKey]);
+
     const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setInputValue(event.target.value);
+        const value = event.target.value;
+        setInputValue(value);
+        // Сохраняем текущее значение в localStorage
+        localStorage.setItem(localStorageKey, value);
     };
 
     // Используйте useEffect для обновления хранилища только когда inputValue изменится
     useEffect(() => {
-        questionsStore[techStore.currentQuestionId].answer = [inputValue]; // Сохраняем введённый текст в виде массива
-    }, [inputValue]); // Обновляем только при изменении inputValue
+        questionsStore[questionId].answer = [inputValue]; // Сохраняем введённый текст в виде массива
+    }, [inputValue, questionId]); // Обновляем только при изменении inputValue
 
     return (
         <div className='LongTextQuestion'>

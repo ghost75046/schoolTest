@@ -14,10 +14,10 @@ const questionsStore = observable([
         title:'1Kak zovut koshky',
         type:'singleChoice',
         answers: [
-    {value: 'businka', label: 'businka'},
-    {value: 'murmuletka', label: 'murmuletka'},
-    {value: 'Option 3', label: 'Option 3'},
-],
+            {value: 'businka', label: 'businka'},
+            {value: 'murmuletka', label: 'murmuletka'},
+            {value: 'Option 3', label: 'Option 3'},
+        ],
         answer:[''],
         trueAnswer:3,
         isAnswered:false
@@ -56,9 +56,3 @@ const questionsStore = observable([
 
 
 export default questionsStore
-
-
-
-
-
-

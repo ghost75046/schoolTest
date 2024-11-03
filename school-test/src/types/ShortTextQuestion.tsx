@@ -4,20 +4,34 @@ import techStore from "../store/techStore";
 import './ShortQuestionQuestion.css';
 
 type ShortTextQuestionProps = {
-    placeholder: string; // Добавим свойство для текста подсказки
+    placeholder: string; // Свойство для текста подсказки
 };
 
 const ShortTextQuestion: React.FC<ShortTextQuestionProps> = ({ placeholder }) => {
+    const questionId = techStore.currentQuestionId; // Получаем текущий идентификатор вопроса
+    const localStorageKey = `shortTextAnswer_${questionId}`; // Ключ для хранения в localStorage
+
     const [inputValue, setInputValue] = useState<string>('');
 
+    // Загружаем сохранённое значение из localStorage при монтировании компонента
+    useEffect(() => {
+        const savedValue = localStorage.getItem(localStorageKey);
+        if (savedValue) {
+            setInputValue(savedValue);
+        }
+    }, [localStorageKey]);
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(event.target.value);
+        const value = event.target.value;
+        setInputValue(value);
+        // Сохраняем текущее значение в localStorage
+        localStorage.setItem(localStorageKey, value);
     };
 
     // Используйте useEffect для обновления хранилища только когда inputValue изменится
     useEffect(() => {
-        questionsStore[techStore.currentQuestionId].answer = [inputValue]; // Сохраняем введённый текст в виде массива
-    }, [inputValue]); // Обновляем только при изменении inputValue
+        questionsStore[questionId].answer = [inputValue]; // Сохраняем введённый текст в виде массива
+    }, [inputValue, questionId]); // Обновляем только при изменении inputValue
 
     return (
         <div className='ShortTextQuestion'>
