@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import questionsStore from "../store/questionsStore";
 import techStore from "../store/techStore";
 import './ShortQuestionQuestion.css';
@@ -7,7 +7,7 @@ type ShortTextQuestionProps = {
     placeholder: string; // Свойство для текста подсказки
 };
 
-const ShortTextQuestion: React.FC<ShortTextQuestionProps> = ({ placeholder }) => {
+const ShortTextQuestion: React.FC<ShortTextQuestionProps> = ({placeholder}) => {
     const questionId = techStore.currentQuestionId; // Получаем текущий идентификатор вопроса
     const localStorageKey = `shortTextAnswer_${questionId}`; // Ключ для хранения в localStorage
 
@@ -30,7 +30,7 @@ const ShortTextQuestion: React.FC<ShortTextQuestionProps> = ({ placeholder }) =>
 
     // Используйте useEffect для обновления хранилища только когда inputValue изменится
     useEffect(() => {
-        questionsStore[questionId].answer = [inputValue]; // Сохраняем введённый текст в виде массива
+        questionsStore.questions[questionId].answer = [inputValue]; // Сохраняем введённый текст в виде массива
     }, [inputValue, questionId]); // Обновляем только при изменении inputValue
 
     return (

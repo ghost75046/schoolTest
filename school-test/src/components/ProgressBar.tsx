@@ -1,8 +1,9 @@
 import React from 'react';
 import './ProgressBar.css'
+
 type Question = {
     id: number;
-    isAnswered: boolean;
+    isAnswered: number;
 };
 
 type ProgressBarProps = {
@@ -10,9 +11,9 @@ type ProgressBarProps = {
     currentQuestionId: number;
 };
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ questions, currentQuestionId }) => {
+const ProgressBar: React.FC<ProgressBarProps> = ({questions, currentQuestionId}) => {
     return (
-        <div style={{ display: 'flex', gap: '5px' }}>
+        <div style={{display: 'flex', gap: '5px'}}>
             {questions.map((question, index) => {
                 // Определяем цвет блока
                 let backgroundColor = 'gray'; // Цвет для не начатых вопросов
@@ -25,12 +26,12 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ questions, currentQuestionId 
 
                 return (
                     <div className='progressBarItem'
-                        key={question.id}
-                        style={{
-                            width: '60px',
-                            height: '10px',
-                            backgroundColor,
-                        }}
+                         key={question.id}
+                         style={{
+                             width: '60px',
+                             height: '10px',
+                             backgroundColor,
+                         }}
                     />
                 );
             })}

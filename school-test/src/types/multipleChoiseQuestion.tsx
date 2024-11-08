@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import questionsStore from "../store/questionsStore";
 import techStore from "../store/techStore";
 import './MultipleChoiseQuestion.css';
@@ -12,7 +12,7 @@ type MultipleChoiceQuestionProps = {
     options: Option[];
 };
 
-const MultipleChoiceQuestion: React.FC<MultipleChoiceQuestionProps> = ({ options }) => {
+const MultipleChoiceQuestion: React.FC<MultipleChoiceQuestionProps> = ({options}) => {
     const questionId = techStore.currentQuestionId; // Получаем текущий идентификатор вопроса
     const localStorageKey = `multipleChoiceAnswer_${questionId}`; // Ключ для хранения в localStorage
 
@@ -39,7 +39,7 @@ const MultipleChoiceQuestion: React.FC<MultipleChoiceQuestionProps> = ({ options
 
     // Используйте useEffect для обновления хранилища только когда selectedOptions изменится
     useEffect(() => {
-        questionsStore[questionId].answer = selectedOptions; // Сохраняем выбранные опции в хранилище
+        questionsStore.questions[questionId].answer = selectedOptions; // Сохраняем выбранные опции в хранилище
     }, [selectedOptions, questionId]); // Обновляем только при изменении selectedOptions
 
     return (

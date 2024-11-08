@@ -1,35 +1,27 @@
-import {observable} from "mobx";
+import {makeAutoObservable} from "mobx";
 import questionsStore from "./questionsStore";
 
+const techStore = {
+    currentQuestionId: 0,
 
-
-
-
-
-
-const techStore = observable({
-    currentQuestionId:0,
     currentQuestionIdIncrement() {
-        if(techStore.currentQuestionId<questionsStore.length-1) {
-            questionsStore[techStore.currentQuestionId].isAnswered = true
-            techStore.currentQuestionId++
-
+        // Проверка: questionsStore.questions должен существовать и быть массивом
+        if (
+            Array.isArray(questionsStore.questions) &&
+            questionsStore.questions.length > 0 &&
+            techStore.currentQuestionId < questionsStore.questions.length - 1
+        ) {
+            questionsStore.questions[techStore.currentQuestionId].isAnswered = 1;
+            techStore.currentQuestionId++;
         }
-
     },
+
     currentQuestionIdDecrement() {
-        if(techStore.currentQuestionId>0) {
-            techStore.currentQuestionId--
+        if (techStore.currentQuestionId > 0) {
+            techStore.currentQuestionId--;
         }
-
     }
-})
+};
 
-
-export default techStore
-
-
-
-
-
-
+makeAutoObservable(techStore);
+export default techStore;

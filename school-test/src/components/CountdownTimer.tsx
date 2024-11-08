@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './CountdownTimer.css';
 
 type CountdownTimerProps = {
@@ -6,7 +6,7 @@ type CountdownTimerProps = {
     onComplete?: () => void; // необязательная функция, вызываемая по завершении отсчета
 };
 
-const CountdownTimer: React.FC<CountdownTimerProps> = ({ initialTime, onComplete }) => {
+const CountdownTimer: React.FC<CountdownTimerProps> = ({initialTime, onComplete}) => {
     const localStorageKey = 'countdownTimerStartTime'; // Ключ для хранения времени начала таймера
     const remainingTimeKey = 'countdownTimerRemainingTime'; // Ключ для хранения оставшегося времени
 

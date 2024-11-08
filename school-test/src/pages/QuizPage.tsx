@@ -28,6 +28,9 @@ const MainPage = () => {
         localStorage.setItem(localStorageKey, techStore.currentQuestionId.toString());
     }, [techStore.currentQuestionId]);
 
+    // Получаем текущий вопрос для упрощения доступа
+    const currentQuestion = questionsStore.questions[techStore.currentQuestionId];
+
     return (
         <div className='quizPage'>
             <div className='testAndTimer'>
@@ -35,28 +38,28 @@ const MainPage = () => {
                 <CountdownTimer initialTime={100} />
             </div>
 
-            <ProgressBar questions={questionsStore} currentQuestionId={techStore.currentQuestionId} />
+            <ProgressBar questions={questionsStore.questions} currentQuestionId={techStore.currentQuestionId} />
 
             <div className='questionTitle'>
-                {'Вопрос номер ' + questionsStore[techStore.currentQuestionId].id + ': ' + questionsStore[techStore.currentQuestionId].title}
+                {'Вопрос номер ' + currentQuestion?.id + ': ' + currentQuestion?.title}
             </div>
 
-            {(questionsStore[techStore.currentQuestionId].type === 'singleChoice') &&
-                <SingleChoiseQuestion options={questionsStore[techStore.currentQuestionId].answers!} />}
-            {(questionsStore[techStore.currentQuestionId].type === 'multipleChoice') &&
-                <MultipleChoiceQuestion options={questionsStore[techStore.currentQuestionId].answers!} />}
-            {(questionsStore[techStore.currentQuestionId].type === 'shortText') &&
-                <ShortTextQuestion placeholder={'vvedite'} />}
-            {(questionsStore[techStore.currentQuestionId].type === 'longText') &&
-                <LongTextQuestion placeholder={'vvedite'} />}
+            {currentQuestion?.type === 'singleChoice' &&
+                <SingleChoiseQuestion options={currentQuestion.answers || []} />}
+            {currentQuestion?.type === 'multipleChoice' &&
+                <MultipleChoiceQuestion options={currentQuestion.answers || []} />}
+            {currentQuestion?.type === 'shortText' &&
+                <ShortTextQuestion placeholder={'Введите ответ'} />}
+            {currentQuestion?.type === 'longText' &&
+                <LongTextQuestion placeholder={'Введите ответ'} />}
 
             <div className='answerButtonDiv'>
                 <button className='answerButton' onClick={techStore.currentQuestionIdIncrement}>Ответить</button>
             </div>
-            <button onClick={techStore.currentQuestionIdDecrement}>предыдущий вопрос</button>
+            <button onClick={techStore.currentQuestionIdDecrement}>Предыдущий вопрос</button>
 
-            <div>debug vibor {questionsStore[techStore.currentQuestionId].answer}</div>
-            <ClearStorageButton/>
+            <div>Debug выбор: {currentQuestion?.answer}</div>
+            <ClearStorageButton />
         </div>
     );
 }
