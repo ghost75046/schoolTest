@@ -70,6 +70,14 @@ class QuestionsStore {
                 trueAnswer: "Businka",
                 isAnswered: 0,
             },
+            {
+                id: 5,
+                title: "5Who is Delya",
+                type: "longText",
+                answer: [""],
+                trueAnswer: "Businka",
+                isAnswered: 0,
+            }
         ];
 
         if (savedState) {

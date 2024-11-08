@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import questionsStore from "../store/questionsStore";
-import { observer } from "mobx-react-lite";
+import {observer} from "mobx-react-lite";
 import techStore from "../store/techStore";
 import SingleChoiseQuestion from "../types/singleChoiseQuestion";
 import CountdownTimer from "../components/CountdownTimer";
@@ -10,6 +10,7 @@ import MultipleChoiceQuestion from "../types/multipleChoiseQuestion";
 import ShortTextQuestion from "../types/ShortTextQuestion";
 import LongTextQuestion from "../types/LongTextQuestion";
 import ClearStorageButton from "../components/ClearStoregeButton";
+import SubmitAnswers, {submitAnswers} from "../components/SubmitAnswers";
 
 const MainPage = () => {
     // Ключ для localStorage
@@ -35,31 +36,36 @@ const MainPage = () => {
         <div className='quizPage'>
             <div className='testAndTimer'>
                 <p>Тестирование</p>
-                <CountdownTimer initialTime={100} />
+                <CountdownTimer initialTime={105} onComplete={submitAnswers}/>
             </div>
 
-            <ProgressBar questions={questionsStore.questions} currentQuestionId={techStore.currentQuestionId} />
+            <ProgressBar questions={questionsStore.questions} currentQuestionId={techStore.currentQuestionId}/>
 
             <div className='questionTitle'>
-                {'Вопрос номер ' + currentQuestion?.id + ': ' + currentQuestion?.title}
+                {currentQuestion?.title}
             </div>
 
             {currentQuestion?.type === 'singleChoice' &&
-                <SingleChoiseQuestion options={currentQuestion.answers || []} />}
+                <SingleChoiseQuestion options={currentQuestion.answers || []}/>}
             {currentQuestion?.type === 'multipleChoice' &&
-                <MultipleChoiceQuestion options={currentQuestion.answers || []} />}
+                <MultipleChoiceQuestion options={currentQuestion.answers || []}/>}
             {currentQuestion?.type === 'shortText' &&
-                <ShortTextQuestion placeholder={'Введите ответ'} />}
+                <ShortTextQuestion placeholder={'Введите ответ'}/>}
             {currentQuestion?.type === 'longText' &&
-                <LongTextQuestion placeholder={'Введите ответ'} />}
+                <LongTextQuestion placeholder={'Введите ответ'}/>}
 
             <div className='answerButtonDiv'>
                 <button className='answerButton' onClick={techStore.currentQuestionIdIncrement}>Ответить</button>
-            </div>
-            <button onClick={techStore.currentQuestionIdDecrement}>Предыдущий вопрос</button>
 
-            <div>Debug выбор: {currentQuestion?.answer}</div>
-            <ClearStorageButton />
+                {/*<button onClick={techStore.currentQuestionIdDecrement}>Предыдущий вопрос</button>*/}
+
+            </div>
+
+
+            {/*<div>Debug выбор: {currentQuestion?.answer}</div>*/}
+            {/*<ClearStorageButton />*/}
+
+            <SubmitAnswers/>
         </div>
     );
 }
