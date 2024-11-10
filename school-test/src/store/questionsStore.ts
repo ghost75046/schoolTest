@@ -24,7 +24,7 @@ class QuestionsStore {
         });
     }
 
-    // Метод для загрузки состояния из localStorage
+    //    Метод для загрузки состояния из localStorage
     loadState(): Question[] {
         const savedState = localStorage.getItem("questionsState");
         const initialQuestions: Question[] = [
