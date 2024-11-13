@@ -46,11 +46,11 @@ const MainPage = () => {
             </div>
 
             {currentQuestion?.type === 'singleChoice' &&
-                <SingleChoiseQuestion options={currentQuestion.answers || []}/>}
+                <SingleChoiseQuestion options={currentQuestion.answers || []} key={techStore.currentQuestionId}/>}
             {currentQuestion?.type === 'multipleChoice' &&
-                <MultipleChoiceQuestion options={currentQuestion.answers || []}/>}
+                <MultipleChoiceQuestion options={currentQuestion.answers || []} key={techStore.currentQuestionId}/>}
             {currentQuestion?.type === 'shortText' &&
-                <ShortTextQuestion placeholder={'Введите ответ'}/>}
+                <ShortTextQuestion placeholder={'Введите ответ'} key={techStore.currentQuestionId}/>}
             {currentQuestion?.type === 'longText' &&
                 <LongTextQuestion placeholder={'Введите ответ'} key={techStore.currentQuestionId}/>}
 

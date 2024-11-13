@@ -43,15 +43,20 @@ class QuestionsStore {
             },
             {
                 id: 2,
-                title: "25Question",
-                type: "longText",
-                answer: "",  // Пустая строка для longText
-                trueAnswer: "3Answer",
+                title: "2Question",
+                type: "singleChoice",
+                answers: [
+                    { value: "1Answer", label: "1Answer" },
+                    { value: "2Answer", label: "2Answer" },
+                    { value: "3Answer", label: "3Answer" },
+                ],
+                answer: "",  // Пустая строка для сохранения текста
+                trueAnswer: 3,
                 isAnswered: 0,
             },
             {
                 id: 3,
-                title: "2Question",
+                title: "3Question",
                 type: "multipleChoice",
                 answers: [
                     { value: "1Answer", label: "1Answer" },
@@ -64,9 +69,14 @@ class QuestionsStore {
             },
             {
                 id: 4,
-                title: "25Question",
-                type: "longText",
-                answer: "",  // Пустая строка для longText
+                title: "4Question",
+                type: "multipleChoice",
+                answers: [
+                    { value: "1Answer", label: "1Answer" },
+                    { value: "2Answer", label: "2Answer" },
+                    { value: "3Answer", label: "3Answer" },
+                ],
+                answer: "",  // Пустая строка для сохранения текста
                 trueAnswer: "3Answer",
                 isAnswered: 0,
             },
@@ -80,9 +90,9 @@ class QuestionsStore {
             },
             {
                 id: 6,
-                title: "4Question",
-                type: "longText",
-                answer: "",  // Пустая строка для longText
+                title: "34Question",
+                type: "shortText",
+                answer: "",  // Пустая строка для shortText
                 trueAnswer: "3Answer",
                 isAnswered: 0,
             },
