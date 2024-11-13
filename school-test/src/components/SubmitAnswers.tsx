@@ -4,7 +4,7 @@ import questionsStore from "../store/questionsStore";
 
 // Функция для отправки данных на сервер
 export const submitAnswers = async () => {
-    const answers = questionsStore.questions.map((question) => ({
+     const answers = questionsStore.questions.map((question) => ({
         id: question.id,
         answer: question.answer,
     }));

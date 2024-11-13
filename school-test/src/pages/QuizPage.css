@@ -27,6 +27,15 @@ p {
     border-radius: 5px;
     width: 130px;
     height: 30px;
+    cursor: pointer
+}
+
+.answerButton:hover {
+    background-color: red;
+}
+
+.answerButton:active {
+    background-color: green;
 }
 
 .questionTitle {

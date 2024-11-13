@@ -36,7 +36,7 @@ const MainPage = () => {
         <div className='quizPage'>
             <div className='testAndTimer'>
                 <p>Тестирование</p>
-                <CountdownTimer initialTime={105} onComplete={submitAnswers}/>
+                <CountdownTimer initialTime={105} />
             </div>
 
             <ProgressBar questions={questionsStore.questions} currentQuestionId={techStore.currentQuestionId}/>
@@ -65,7 +65,7 @@ const MainPage = () => {
             {/*<div>Debug выбор: {currentQuestion?.answer}</div>*/}
             {/*<ClearStorageButton />*/}
 
-            <SubmitAnswers/>
+            {/*<SubmitAnswers/>*/}
         </div>
     );
 }
