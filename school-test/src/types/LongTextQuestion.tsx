@@ -41,6 +41,8 @@ const LongTextQuestion: React.FC<LongTextQuestionProps> = ({placeholder}) => {
                 placeholder={placeholder} // Используем текст подсказки
                 rows={4} // Задаем количество видимых строк
                 style={{width: '100%', resize: 'vertical'}} // Позволяем пользователю изменять размер по вертикали
+                
+
             />
         </div>
     );

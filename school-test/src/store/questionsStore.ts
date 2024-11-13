@@ -6,7 +6,7 @@ type Question = {
     title: string;
     type: string;
     answers?: { value: string; label: string }[];
-    answer: string | string[]; // Для сохранения текста или списка ответов
+    answer: string | string[]; // Для текста или массива ответов
     trueAnswer: number | string;
     isAnswered: number;
 };
@@ -104,14 +104,16 @@ class QuestionsStore {
             }
         ];
 
+        // Загружаем данные из localStorage, если они есть
         if (savedState) {
             try {
-                const parsedState: { id: number; isAnswered: number }[] = JSON.parse(savedState);
+                const parsedState: { id: number; isAnswered: number; answer: string | string[] }[] = JSON.parse(savedState);
                 runInAction(() => {
                     parsedState.forEach((savedQuestion) => {
                         const question = initialQuestions.find((q) => q.id === savedQuestion.id);
                         if (question) {
                             question.isAnswered = savedQuestion.isAnswered;
+                            question.answer = savedQuestion.answer; // Загружаем ответы
                         }
                     });
                 });
@@ -128,7 +130,7 @@ class QuestionsStore {
         const question = this.questions.find((q) => q.id === id);
         if (question) {
             runInAction(() => {
-                question.answer = value; // Обновляем только текущий ответ
+                question.answer = value;  // Обновляем только конкретный ответ
                 question.isAnswered = 1; // Помечаем как отвеченный
             });
         }
@@ -146,7 +148,7 @@ class QuestionsStore {
 
     // Метод для сохранения состояния в localStorage
     saveState() {
-        const stateToSave = this.questions.map(({ id, isAnswered }) => ({ id, isAnswered }));
+        const stateToSave = this.questions.map(({ id, isAnswered, answer }) => ({ id, isAnswered, answer }));
         localStorage.setItem("questionsState", JSON.stringify(stateToSave));
     }
 }

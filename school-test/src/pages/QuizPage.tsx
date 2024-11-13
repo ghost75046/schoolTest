@@ -52,7 +52,7 @@ const MainPage = () => {
             {currentQuestion?.type === 'shortText' &&
                 <ShortTextQuestion placeholder={'Введите ответ'}/>}
             {currentQuestion?.type === 'longText' &&
-                <LongTextQuestion placeholder={'Введите ответ'}/>}
+                <LongTextQuestion placeholder={'Введите ответ'} key={techStore.currentQuestionId}/>}
 
             <div className='answerButtonDiv'>
                 <button className='answerButton' onClick={techStore.currentQuestionIdIncrement}>Ответить</button>

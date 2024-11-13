@@ -10,7 +10,7 @@ const techStore = {
         if (
             Array.isArray(questionsStore.questions) &&
             questionsStore.questions.length > 0 &&
-            techStore.currentQuestionId < questionsStore.questions.length - 1
+            techStore.currentQuestionId < questionsStore.questions.length
         ) {
             questionsStore.questions[techStore.currentQuestionId].isAnswered = 1;
             techStore.currentQuestionId++;
