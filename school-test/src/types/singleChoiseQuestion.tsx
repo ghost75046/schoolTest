@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import questionsStore from "../store/questionsStore";
 import techStore from "../store/techStore";
 import './singleChoiseQuestion.css';
@@ -13,24 +13,24 @@ type SingleChoiseQuestionProps = {
 };
 
 const SingleChoiseQuestion: React.FC<SingleChoiseQuestionProps> = ({options}) => {
-    const questionId = techStore.currentQuestionId; // Получаем текущий идентификатор вопроса
-    const localStorageKey = `singleChoiceAnswer_${questionId}`; // Ключ для хранения в localStorage
+    const questionId = techStore.currentQuestionId;
+    const localStorageKey = `singleChoiceAnswer_${questionId}`;
 
-    // Инициализация состояния с загрузкой из localStorage
+
     const [selectedOption, setSelectedOption] = useState<string>(() => {
         const savedValue = localStorage.getItem(localStorageKey);
-        return savedValue ? savedValue : ''; // Если есть сохранённое значение, используем его
+        return savedValue ? savedValue : '';
     });
 
     const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setSelectedOption(value);
 
-        // Сохраняем выбранный ответ в localStorage
+
         localStorage.setItem(localStorageKey, value);
 
-        // Обновляем хранилище, записывая выбранный ответ в массив
-        questionsStore.questions[questionId].answer = [value]; // Записываем выбранный ответ как нулевой элемент массива
+
+        questionsStore.questions[questionId].answer = [value];
     };
 
     return (

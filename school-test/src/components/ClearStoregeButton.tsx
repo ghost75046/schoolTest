@@ -1,11 +1,9 @@
 import React from 'react';
-import questionsStore from '../store/questionsStore';
 
 const ClearStorageButton: React.FC = () => {
     const clearLocalStorage = () => {
-        localStorage.clear(); // Очищает весь localStorage
+        localStorage.clear();
     };
-
     return (
         <button onClick={clearLocalStorage}>Очистить localStorage</button>
     );

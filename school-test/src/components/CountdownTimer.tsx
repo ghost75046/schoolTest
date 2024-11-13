@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import './CountdownTimer.css';
 
 type CountdownTimerProps = {
-    initialTime: number; // начальное время в секундах
-    onComplete?: () => void; // необязательная функция, вызываемая по завершении отсчета
+    initialTime: number;
+    onComplete?: () => void;
 };
 
 const CountdownTimer: React.FC<CountdownTimerProps> = ({initialTime, onComplete}) => {
@@ -20,7 +20,6 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({initialTime, onComplete}
             const currentTime = Math.floor(Date.now() / 1000);
             const elapsedTime = currentTime - startTime;
             const newRemainingTime = remainingTime - elapsedTime;
-
             return newRemainingTime > 0 ? newRemainingTime : 0;
         }
         return initialTime;
@@ -44,7 +43,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({initialTime, onComplete}
 
             return () => clearInterval(timerId);
         } else if (timeLeft === 0) {
-            console.log("Время истекло. Вызов функции onComplete."); // Добавлено для отладки
+
             if (onComplete) {
                 onComplete();
             }

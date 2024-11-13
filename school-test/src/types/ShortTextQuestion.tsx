@@ -4,16 +4,16 @@ import techStore from "../store/techStore";
 import './ShortQuestionQuestion.css';
 
 type ShortTextQuestionProps = {
-    placeholder: string; // Свойство для текста подсказки
+    placeholder: string;
 };
 
 const ShortTextQuestion: React.FC<ShortTextQuestionProps> = ({placeholder}) => {
-    const questionId = techStore.currentQuestionId; // Получаем текущий идентификатор вопроса
-    const localStorageKey = `shortTextAnswer_${questionId}`; // Ключ для хранения в localStorage
+    const questionId = techStore.currentQuestionId;
+    const localStorageKey = `shortTextAnswer_${questionId}`;
 
     const [inputValue, setInputValue] = useState<string>('');
 
-    // Загружаем сохранённое значение из localStorage при монтировании компонента
+
     useEffect(() => {
         const savedValue = localStorage.getItem(localStorageKey);
         if (savedValue) {
@@ -24,14 +24,14 @@ const ShortTextQuestion: React.FC<ShortTextQuestionProps> = ({placeholder}) => {
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setInputValue(value);
-        // Сохраняем текущее значение в localStorage
+
         localStorage.setItem(localStorageKey, value);
     };
 
-    // Используйте useEffect для обновления хранилища только когда inputValue изменится
+
     useEffect(() => {
-        questionsStore.questions[questionId].answer = [inputValue]; // Сохраняем введённый текст в виде массива
-    }, [inputValue, questionId]); // Обновляем только при изменении inputValue
+        questionsStore.questions[questionId].answer = [inputValue];
+    }, [inputValue, questionId]);
 
     return (
         <div className='ShortTextQuestion'>
@@ -39,7 +39,7 @@ const ShortTextQuestion: React.FC<ShortTextQuestionProps> = ({placeholder}) => {
                 type="text"
                 value={inputValue}
                 onChange={handleInputChange}
-                placeholder={placeholder} // Используем текст подсказки
+                placeholder={placeholder}
             />
         </div>
     );

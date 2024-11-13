@@ -15,13 +15,13 @@ const ProgressBar: React.FC<ProgressBarProps> = ({questions, currentQuestionId})
     return (
         <div style={{display: 'flex', gap: '5px'}}>
             {questions.map((question, index) => {
-                // Определяем цвет блока
-                let backgroundColor = 'gray'; // Цвет для не начатых вопросов
+
+                let backgroundColor = 'gray';
 
                 if (index === currentQuestionId) {
-                    backgroundColor = 'firebrick'; // Цвет текущего вопроса
+                    backgroundColor = 'firebrick';
                 } else if (question.isAnswered) {
-                    backgroundColor = 'black'; // Цвет для завершенных вопросов
+                    backgroundColor = 'black';
                 }
 
                 return (

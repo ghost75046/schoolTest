@@ -1,12 +1,12 @@
-import { makeAutoObservable, autorun, runInAction } from "mobx";
+import {makeAutoObservable, autorun, runInAction} from "mobx";
 
-// Определяем тип для вопроса
+
 type Question = {
     id: number;
     title: string;
     type: string;
     answers?: { value: string; label: string }[];
-    answer: string | string[]; // Для текста или массива ответов
+    answer: string | string[];
     trueAnswer: number | string;
     isAnswered: number;
 };
@@ -16,15 +16,15 @@ class QuestionsStore {
 
     constructor() {
         makeAutoObservable(this);
-        this.questions = this.loadState(); // Загружаем начальное состояние из localStorage
+        this.questions = this.loadState();
 
-        // Устанавливаем наблюдение, чтобы сохранять состояние при изменении isAnswered
+
         autorun(() => {
             this.saveState();
         });
     }
 
-    // Метод для загрузки состояния из localStorage
+
     loadState(): Question[] {
         const savedState = localStorage.getItem("questionsState");
         const initialQuestions: Question[] = [
@@ -33,11 +33,11 @@ class QuestionsStore {
                 title: "1Question",
                 type: "singleChoice",
                 answers: [
-                    { value: "1Answer", label: "1Answer" },
-                    { value: "2Answer", label: "2Answer" },
-                    { value: "3Answer", label: "3Answer" },
+                    {value: "1Answer", label: "1Answer"},
+                    {value: "2Answer", label: "2Answer"},
+                    {value: "3Answer", label: "3Answer"},
                 ],
-                answer: "",  // Пустая строка для сохранения текста
+                answer: "",
                 trueAnswer: 3,
                 isAnswered: 0,
             },
@@ -46,11 +46,11 @@ class QuestionsStore {
                 title: "2Question",
                 type: "singleChoice",
                 answers: [
-                    { value: "1Answer", label: "1Answer" },
-                    { value: "2Answer", label: "2Answer" },
-                    { value: "3Answer", label: "3Answer" },
+                    {value: "1Answer", label: "1Answer"},
+                    {value: "2Answer", label: "2Answer"},
+                    {value: "3Answer", label: "3Answer"},
                 ],
-                answer: "",  // Пустая строка для сохранения текста
+                answer: "",
                 trueAnswer: 3,
                 isAnswered: 0,
             },
@@ -59,11 +59,11 @@ class QuestionsStore {
                 title: "3Question",
                 type: "multipleChoice",
                 answers: [
-                    { value: "1Answer", label: "1Answer" },
-                    { value: "2Answer", label: "2Answer" },
-                    { value: "3Answer", label: "3Answer" },
+                    {value: "1Answer", label: "1Answer"},
+                    {value: "2Answer", label: "2Answer"},
+                    {value: "3Answer", label: "3Answer"},
                 ],
-                answer: "",  // Пустая строка для сохранения текста
+                answer: "",
                 trueAnswer: "3Answer",
                 isAnswered: 0,
             },
@@ -72,11 +72,11 @@ class QuestionsStore {
                 title: "4Question",
                 type: "multipleChoice",
                 answers: [
-                    { value: "1Answer", label: "1Answer" },
-                    { value: "2Answer", label: "2Answer" },
-                    { value: "3Answer", label: "3Answer" },
+                    {value: "1Answer", label: "1Answer"},
+                    {value: "2Answer", label: "2Answer"},
+                    {value: "3Answer", label: "3Answer"},
                 ],
-                answer: "",  // Пустая строка для сохранения текста
+                answer: "",
                 trueAnswer: "3Answer",
                 isAnswered: 0,
             },
@@ -84,7 +84,7 @@ class QuestionsStore {
                 id: 5,
                 title: "3Question",
                 type: "shortText",
-                answer: "",  // Пустая строка для shortText
+                answer: "",
                 trueAnswer: "3Answer",
                 isAnswered: 0,
             },
@@ -92,7 +92,7 @@ class QuestionsStore {
                 id: 6,
                 title: "34Question",
                 type: "shortText",
-                answer: "",  // Пустая строка для shortText
+                answer: "",
                 trueAnswer: "3Answer",
                 isAnswered: 0,
             },
@@ -100,7 +100,7 @@ class QuestionsStore {
                 id: 7,
                 title: "5Question",
                 type: "longText",
-                answer: "",  // Пустая строка для longText
+                answer: "",
                 trueAnswer: "3Answer",
                 isAnswered: 0,
             },
@@ -108,22 +108,26 @@ class QuestionsStore {
                 id: 8,
                 title: "6Question",
                 type: "longText",
-                answer: "",  // Пустая строка для longText
+                answer: "",
                 trueAnswer: "3Answer",
                 isAnswered: 0,
             }
         ];
 
-        // Загружаем данные из localStorage, если они есть
+
         if (savedState) {
             try {
-                const parsedState: { id: number; isAnswered: number; answer: string | string[] }[] = JSON.parse(savedState);
+                const parsedState: {
+                    id: number;
+                    isAnswered: number;
+                    answer: string | string[]
+                }[] = JSON.parse(savedState);
                 runInAction(() => {
                     parsedState.forEach((savedQuestion) => {
                         const question = initialQuestions.find((q) => q.id === savedQuestion.id);
                         if (question) {
                             question.isAnswered = savedQuestion.isAnswered;
-                            question.answer = savedQuestion.answer; // Загружаем ответы
+                            question.answer = savedQuestion.answer;
                         }
                     });
                 });
@@ -135,18 +139,18 @@ class QuestionsStore {
         return initialQuestions;
     }
 
-    // Метод для обновления ответа на вопрос
+
     setAnswer(id: number, value: string | string[]) {
         const question = this.questions.find((q) => q.id === id);
         if (question) {
             runInAction(() => {
-                question.answer = value;  // Обновляем только конкретный ответ
-                question.isAnswered = 1; // Помечаем как отвеченный
+                question.answer = value;
+                question.isAnswered = 1;
             });
         }
     }
 
-    // Метод для обновления свойства isAnswered
+
     setAnswered(id: number, value: number) {
         const question = this.questions.find((q) => q.id === id);
         if (question) {
@@ -156,9 +160,9 @@ class QuestionsStore {
         }
     }
 
-    // Метод для сохранения состояния в localStorage
+
     saveState() {
-        const stateToSave = this.questions.map(({ id, isAnswered, answer }) => ({ id, isAnswered, answer }));
+        const stateToSave = this.questions.map(({id, isAnswered, answer}) => ({id, isAnswered, answer}));
         localStorage.setItem("questionsState", JSON.stringify(stateToSave));
     }
 }
